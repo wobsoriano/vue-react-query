@@ -7,8 +7,7 @@
   },
   "dependencies": {
     "react-query": "^3.2.0-beta.38",
-    "vue": "^3.0.4",
-    "zustand": "^3.2.0"
+    "vue": "^3.0.4"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.4",
