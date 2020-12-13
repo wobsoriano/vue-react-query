@@ -14,9 +14,13 @@
 </template>
 
 <script>
+import { watchEffect } from 'vue';
 import { useQuery } from './query'
 
-const fetcher = () => fetch('https://api.github.com/repos/tannerlinsley/react-query').then((res) => res.json())
+function fetcher () {
+  return fetch('https://api.github.com/repos/tannerlinsley/react-query')
+  .then((res) => res.json());
+}
 
 export default {
   name: 'App',
@@ -27,7 +31,15 @@ export default {
       isLoading,
       isFetching,
       refetch
-    } = useQuery('repoData', fetcher);
+    } = useQuery('repoData', fetcher, {
+      refetchInterval: 5000
+    });
+
+    watchEffect(() => {
+      // logs every 5 seconds
+      // or when refetch is clicked
+      console.log('Fetching', isFetching.value)
+    });
 
     return {
       error,
