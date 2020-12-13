@@ -5,6 +5,8 @@ import './index.css';
 
 const app = createApp(App);
 
-app.config.globalProperties.queryClient = new QueryClient();
+const queryClient = new QueryClient();
+
+app.provide('queryClient', queryClient)
 
 app.mount('#app');

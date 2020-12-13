@@ -1,5 +1,5 @@
 import { QueryObserver } from 'react-query/core';
-import { getCurrentInstance, onUnmounted, reactive, toRefs, readonly } from 'vue';
+import { onUnmounted, reactive, toRefs, readonly, inject } from 'vue';
 
 const initialState = {
     status: 'loading',
@@ -12,10 +12,7 @@ const initialState = {
 }
 
 export function useQuery(queryKey, queryFn, options) {
-    // app is declared in main.js of Vue app
-    // app.config.globalProperties.queryClient = new QueryClient()
-    const app = getCurrentInstance();
-    const { queryClient } = app.appContext.config.globalProperties;
+    const queryClient = inject('queryClient');
 
     const state = reactive(initialState);
 
