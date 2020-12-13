@@ -7,14 +7,11 @@
     <strong>👀 {{data.subscribers_count}}</strong>
     <strong>✨ {{data.stargazers_count}}</strong>
     <strong>🍴 {{data.forks_count}}</strong>
-    <div style="margin-top: 1.5rem;">
-      <button @click="refetch" :disabled="isFetching">{{ isFetching ? 'Refetching...' : 'Refetch' }}</button>
-    </div>
+    <Test />
   </div>
 </template>
 
 <script>
-import { watchEffect } from 'vue';
 import { useQuery } from './query'
 
 function fetcher () {
@@ -29,23 +26,15 @@ export default {
       data,
       isLoading,
       isFetching,
-      refetch
     } = useQuery('repoData', fetcher, {
-      refetchInterval: 5000
-    });
-
-    watchEffect(() => {
-      // logs every 5 seconds
-      // or when refetch is clicked
-      console.log('Fetching', isFetching.value)
+      refetchInterval: 10000
     });
 
     return {
       error,
       data,
       isLoading,
-      isFetching,
-      refetch
+      isFetching
     }
   }
 }
