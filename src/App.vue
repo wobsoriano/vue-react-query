@@ -8,7 +8,7 @@
     <strong>✨ {{data.stargazers_count}}</strong>
     <strong>🍴 {{data.forks_count}}</strong>
     <div style="margin-top: 1.5rem;">
-      <button @click="refetch">Refetch</button>
+      <button @click="refetch" :disabled="isFetching">{{ isFetching ? 'Refetching...' : 'Refetch' }}</button>
     </div>
   </div>
 </template>
@@ -23,7 +23,6 @@ function fetcher () {
 }
 
 export default {
-  name: 'App',
   setup() {
     const {
       error,
